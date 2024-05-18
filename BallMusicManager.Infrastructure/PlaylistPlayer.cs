@@ -3,14 +3,14 @@ using System.Collections.Immutable;
 
 namespace BallMusicManager.Infrastructure;
 
-public sealed class PlaylistPlayer{
+public sealed class PlaylistPlayer {
     public readonly MusicPlayer Player = new();
     public readonly string Path;
     public readonly ImmutableArray<Song> Songs;
 
     public bool IsPlaying => Player.IsPlaying;
-    public Song? Current => IsEmpty ? null : Songs[CurrentIndex];
-    public Song? Peek => IsEnd || IsEmpty ? null : Songs[CurrentIndex + 1];
+    public ISong? Current => IsEmpty ? null : Songs[CurrentIndex];
+    public ISong? Peek => IsEnd || IsEmpty ? null : Songs[CurrentIndex + 1];
     public int Length => Songs.Length;
     public bool IsEmpty => Length == 0;
     public bool IsEnd => IsEmpty || CurrentIndex == LastIndex;
